@@ -1,14 +1,17 @@
-import os
 import logging
+import os
 from typing import Annotated
-from fastapi import FastAPI, Depends
+
+from fastapi import Depends, FastAPI
 from tortoise.contrib.fastapi import register_tortoise
-from .config import get_settings, Settings
+
 from app.api import ping, summaries
 from app.db import init_db
 
+from .config import Settings, get_settings
 
 log = logging.getLogger("uvicorn")
+
 
 def create_application() -> FastAPI:
     app = FastAPI()
@@ -16,6 +19,7 @@ def create_application() -> FastAPI:
     app.include_router(summaries.router)
 
     return app
+
 
 app = create_application()
 

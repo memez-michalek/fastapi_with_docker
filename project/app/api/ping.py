@@ -1,8 +1,11 @@
 from typing import Annotated
+
 from fastapi import APIRouter, Depends
-from app.config import get_settings, Settings
+
+from app.config import Settings, get_settings
 
 router = APIRouter()
+
 
 @router.get("/test")
 async def ping(settings: Annotated[Settings, Depends(get_settings)]):
@@ -10,4 +13,4 @@ async def ping(settings: Annotated[Settings, Depends(get_settings)]):
         "message": "pong",
         "env": settings.environment,
         "testing": settings.testing,
-        }
+    }
