@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  fastapi: 
+    build: ./project
+    command:  uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    volumes:
+      - ./project:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres-db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres-db:5432/web_dev        # new
+      - DATABASE_TEST_URL=postgres://postgres:postgres@postgres-db:5432/web_test 
+
+  postgres-db:
+    build: 
+      context: ./project/db
+      dockerfile: Dockerfile
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  redis:
+    image: redis:7
