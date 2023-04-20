@@ -1,14 +1,11 @@
 import logging
-import os
-from typing import Annotated
 
-from fastapi import Depends, FastAPI
-from tortoise.contrib.fastapi import register_tortoise
+from fastapi import FastAPI
+
 
 from app.api import ping, summaries
 from app.db import init_db
 
-from .config import Settings, get_settings
 
 log = logging.getLogger("uvicorn")
 
