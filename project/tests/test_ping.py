@@ -1,5 +1,3 @@
-
-
 from .confest import test_app  # noqa: F401
 
 
