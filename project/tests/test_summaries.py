@@ -1,11 +1,9 @@
 import json
 
-#import pytest
-
-from .confest import test_app_with_db # noqa: F401
+from .confest import test_app_with_db  # noqa: F401,F811
 
 
-def test_create_summary(test_app_with_db): # noqa: F401
+def test_create_summary(test_app_with_db):  # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"url": "https://foo.bar"})
     )
@@ -13,7 +11,7 @@ def test_create_summary(test_app_with_db): # noqa: F401
     assert resp.json()["url"] == "https://foo.bar"
 
 
-def test_create_summary_invalid_json(test_app_with_db): # noqa: F401
+def test_create_summary_invalid_json(test_app_with_db):  # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"link": "https://foo.bar"})
     )
@@ -29,7 +27,7 @@ def test_create_summary_invalid_json(test_app_with_db): # noqa: F401
     }
 
 
-def test_get_summary(test_app_with_db): # noqa: F401
+def test_get_summary(test_app_with_db):  # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"url": "https://foo.bar"})
     )
@@ -46,7 +44,7 @@ def test_get_summary(test_app_with_db): # noqa: F401
     assert resp_dict["created_at"]
 
 
-def test_get_summary_incorrect_id(test_app_with_db): # noqa: F401
+def test_get_summary_incorrect_id(test_app_with_db):  # noqa: F401,F811
     resp = test_app_with_db.get("/summaries/999/")
     assert resp.status_code == 404
     assert resp.json()["detail"] == "Summary not found"
