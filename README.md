@@ -1,3 +1,4 @@
+![Continuous Integration and Delivery](https://github.com/memez-michalek/fastapi_with_docker/workflows/Continuous%20Integration%20and%20Delivery/badge.svg?branch=main)
 # FastAPI with TDD and Docker
 
 This project demonstrates how to use FastAPI, Test-Driven Development (TDD) and Docker together to create a web application.
@@ -30,6 +31,5 @@ You'll see Swagger explanation of api endpoints
 This project uses Pytest for testing. To run the tests, first make sure that the Docker container is running, then run:
 
 docker-compose exec fastapi python -m pytest
-
 
 
