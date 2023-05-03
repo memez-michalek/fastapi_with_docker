@@ -1,7 +1,7 @@
 ![Continuous Integration and Delivery](https://github.com/memez-michalek/fastapi_with_docker/workflows/Continuous%20Integration%20and%20Delivery/badge.svg?branch=main)
 # FastAPI with TDD and Docker
 
-This project demonstrates how to use FastAPI, Test-Driven Development (TDD) and Docker together to create a web application.
+This is my short project which involves exploring the capabilities of the FastAPI framework while also utilizing Docker for containerization. This project is a hands-on approach to learning new framework.
 
 ## Getting Started
 
