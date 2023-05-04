@@ -7,7 +7,7 @@ from app.api import summaries
 from .confest import test_app_with_db  # noqa: F401,F811
 
 
-def test_create_summary(test_app_with_db, monkeypatch):
+def test_create_summary(test_app_with_db, monkeypatch):  # noqa: F401,F811
     def mock_generate_summary(summary_id, url):
         return None
 
@@ -22,7 +22,7 @@ def test_create_summary(test_app_with_db, monkeypatch):
 
 
 def test_create_summary_invalid_json(
-    test_app_with_db,
+    test_app_with_db,  # noqa: F401,F811
 ):  # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"link": "https://foo.bar"})
@@ -269,7 +269,7 @@ def test_update_summary_invalid_json(test_app_with_db, monkeypatch):  # noqa: F4
 
 
 def test_update_summaries_invalid_keys(
-    test_app_with_db, monkeypatch
+    test_app_with_db, monkeypatch  # noqa: F401,F811
 ):  # noqa: F401,F811
     def generate_mock_summary(summary_id, url):
         return None
