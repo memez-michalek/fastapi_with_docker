@@ -71,7 +71,7 @@ def test_get_summary_incorrect_id(test_app_with_db):  # noqa: F401,F811
     }
 
 
-def test_remove_summary(test_app_with_db):  # noqa: F401,
+def test_remove_summary(test_app_with_db):  # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"url": "https://foo.bar"})
     )
@@ -82,7 +82,7 @@ def test_remove_summary(test_app_with_db):  # noqa: F401,
     assert resp.json() == {"id": resp_id, "url": "https://foo.bar"}
 
 
-def test_remove_summary_incorrect_id(test_app_with_db):
+def test_remove_summary_incorrect_id(test_app_with_db): # noqa: F401,F811
     resp = test_app_with_db.delete("/summaries/999/")
     assert resp.status_code == 404
     assert resp.json()["detail"] == "Summary not found"
@@ -101,7 +101,7 @@ def test_remove_summary_incorrect_id(test_app_with_db):
     }
 
 
-def test_update_summary(test_app_with_db):
+def test_update_summary(test_app_with_db): # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"url": "https://foo.bar"})
     )
@@ -173,14 +173,14 @@ def test_update_summary(test_app_with_db):
     ],
 )
 def test_update_summary_invalid(
-    test_app_with_db, summary_id, payload, status_code, detail
+    test_app_with_db, summary_id, payload, status_code, detail # noqa: F401,F811
 ):
     resp = test_app_with_db.put(f"/summaries/{summary_id}", data=json.dumps(payload))
     assert resp.status_code == status_code
     assert resp.json()["detail"] == detail
 
 
-def test_update_summary_invalid_url(test_app_with_db):
+def test_update_summary_invalid_url(test_app_with_db): # noqa: F401,F811
     resp = test_app_with_db.put(
         "/summaries/1/",
         data=json.dumps({"url": "invalid://url", "summary": "updated!"}),
@@ -189,8 +189,8 @@ def test_update_summary_invalid_url(test_app_with_db):
     assert resp.json()["detail"][0]["msg"] == "URL scheme not permitted"
 
 
-def test_update_summary_incorrect_id(test_app_with_db):
-    resp = test_app_with_db.put(
+def test_update_summary_incorrect_id(test_app_with_db): # noqa: F401,F811
+    resp = test_app_with_db.put( 
         "/summaries/999/",
         data=json.dumps({"url": "https://foo.bar", "summary": "updated!"}),
     )
@@ -214,7 +214,7 @@ def test_update_summary_incorrect_id(test_app_with_db):
     }
 
 
-def test_update_summary_invalid_json(test_app_with_db):
+def test_update_summary_invalid_json(test_app_with_db): # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"url": "https://foo.bar"})
     )
@@ -238,7 +238,7 @@ def test_update_summary_invalid_json(test_app_with_db):
     }
 
 
-def test_update_summaries_invalid_keys(test_app_with_db):
+def test_update_summaries_invalid_keys(test_app_with_db): # noqa: F401,F811
     resp = test_app_with_db.post(
         "/summaries/", data=json.dumps({"url": "https://foo.bar"})
     )
