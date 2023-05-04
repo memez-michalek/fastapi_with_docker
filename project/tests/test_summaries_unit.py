@@ -110,7 +110,7 @@ def test_update_summary(test_app_with_db, monkeypatch):  # noqa: F401,F811
     ],
 )
 def test_update_summary_invalid(
-    test_app_with_db,   # noqa: F401,F811
+    test_app_with_db,  # noqa: F401,F811
     monkeypatch,
     summary_id,
     payload,
@@ -305,7 +305,7 @@ def test_update_summary(test_app_with_db, monkeypatch):  # noqa: F401,F811
     ],
 )
 def test_update_summary_invalid(  # noqa: F401,F811
-    test_app_with_db,   # noqa: F401,F811
+    test_app_with_db,  # noqa: F401,F811
     monkeypatch,
     summary_id,
     payload,
