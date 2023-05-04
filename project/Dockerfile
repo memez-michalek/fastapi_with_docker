@@ -3,6 +3,7 @@ FROM python:3.11-slim-buster
 WORKDIR /app
 
 COPY requirements.txt .
+COPY requirements-dev.txt .
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
@@ -11,7 +12,7 @@ RUN apt-get update \
   && apt-get clean
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r requirements-dev.txt
 
 COPY . . 
 
