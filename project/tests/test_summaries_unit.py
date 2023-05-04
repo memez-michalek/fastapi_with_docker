@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytest
 
-from app.api import crud
+from app.api import crud, summaries
 
 from .confest import test_app_with_db  # noqa: F401,F811
 
@@ -130,6 +130,11 @@ def test_update_summary_invalid_url(test_app_with_db):  # noqa: F401,F811
 
 
 def test_create_summary(test_app_with_db, monkeypatch):  # noqa: F401,F811
+    def mock_generate_summary(summary_id, url):
+        return None
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
+
     test_request_payload = {"url": "https://foo.bar"}
     test_response_payload = {"id": 1, "url": "https://foo.bar"}
 

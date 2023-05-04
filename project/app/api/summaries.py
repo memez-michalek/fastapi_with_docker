@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Path
 
 from app.api import crud
 from app.models.tortoise import SummarySchema
+from app.summarizer import generate_summary
 
 from app.models.pydantic import (  # isort:skip
     SummaryPayloadSchema,
@@ -11,12 +12,17 @@ from app.models.pydantic import (  # isort:skip
     SummaryUpdatePayloadSchema,
 )
 
+
 router = APIRouter()
 
 
 @router.post("/summaries/", response_model=SummaryResponseSchema, status_code=201)
-async def create_summary(payload: SummaryPayloadSchema) -> SummaryResponseSchema:
+async def create_summary(
+    payload: SummaryPayloadSchema, background_tasks: BackgroundTasks
+) -> SummaryResponseSchema:
     id = await crud.post(payload)
+
+    background_tasks.add_task(generate_summary, id, payload.url)
     response = {
         "id": id,
         "url": payload.url,
