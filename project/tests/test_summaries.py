@@ -189,8 +189,8 @@ def test_update_summary_invalid_url(test_app_with_db):  # noqa: F401,F811
     assert resp.json()["detail"][0]["msg"] == "URL scheme not permitted"
 
 
-def test_update_summary_incorrect_id(test_app_with_db):  # noqa: F401,F811    
-    resp = test_app_with_db.put( 
+def test_update_summary_incorrect_id(test_app_with_db):  # noqa: F401,F811
+    resp = test_app_with_db.put(
         "/summaries/999/",
         data=json.dumps({"url": "https://foo.bar", "summary": "updated!"}),
     )
